@@ -71,6 +71,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'app.wsgi.application'
 
+MEDIA_ROOT = 'collection'
+
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
