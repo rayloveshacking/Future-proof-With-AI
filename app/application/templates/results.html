@@ -18,6 +18,7 @@
             font-weight: 600;
             text-align: center;
             position: absolute;
+            cursor: pointer;
         }
         .edge {
             stroke: gray;
@@ -26,28 +27,41 @@
     </style>
 </head>
 <body class="bg-gray-900 text-white">
-    <div class="p-4">
+    <div class="p-8">
         <div class="grid grid-cols-1 lg:grid-cols-7 lg:gap-8 h-auto">
-            <div class="rounded-xl overflow-hidden col-span-2">
-                <div class="bg-gray-800 rounded mb-4" style="height: 80vh; position: relative; width: 100%;" id="graphContainer">
-                    <div class="node bg-gray-600 text-white" id="node1" style="left: 20%; top: 50px;">Skills Matched!</div>
-                    <div class="node bg-gray-600 text-white" id="node2" style="left: 60%; top: 100px;">Writing Reports</div>
-                    <div class="node bg-gray-600 text-white" id="node3" style="left: 20%; top: 250px;">Reading Logs</div>
-                    <div class="node bg-gray-600 text-white" id="node4" style="left: 60%; top: 300px">Configure Devices</div>
+            <div class="col-span-4 grid grid-cols-2 gap-8">
+                <div class="rounded-xl overflow-hidden lg:col-span-1 col-span-2">
+                    <div class="bg-gradient-to-r from-gray-700 to-gray-800 rounded mb-2" style="height: 80vh; position: relative; width: 100%;" id="graphContainer">
+                        <div class="node bg-green-500 bg-opacity-50 text-white cursor-pointer" id="node1" style="left: 20%; top: 50px;">Skills Matched!</div>
+                        <div class="node bg-blue-500 bg-opacity-50 text-white cursor-pointer" id="node2" style="left: 60%; top: 100px;">Writing Reports</div>
+                        <div class="node bg-blue-500 bg-opacity-50 text-white cursor-pointer" id="node3" style="left: 20%; top: 250px;">Reading Logs</div>
+                        <div class="node bg-blue-500 bg-opacity-50 text-white cursor-pointer" id="node4" style="left: 60%; top: 300px">Configure Devices</div>
 
-                    <svg style="position: absolute; width: 100%; height: 100%;" id="graphSvg">
-                    </svg>
+                        <svg style="position: absolute; width: 100%; height: 100%;" id="graphSvg">
+                        </svg>
+                    </div>
+                </div>
+                <div class="rounded-xl overflow-hidden lg:col-span-1 col-span-2">
+                    <div class="bg-gradient-to-r from-gray-700 to-gray-800 rounded mb-2 p-10 w-full" style="height: 80vh; display: flex; align-items: center; justify-content: center;">
+                        <canvas id="skillChart" width="800" height="500"></canvas>
+                    </div>
+                </div>
+                
+                <div class="rounded-xl overflow-hidden col-span-2">
+                    <div class="bg-gradient-to-r from-gray-700 to-gray-800 rounded-xl p-6 mb-8">
+                        <h2 class="text-lg font-bold mb-4">Certifications</h2>
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li>Certified AI Practitioner</li>
+                            <li>Data Science Professional Certificate</li>
+                            <li>Machine Learning Specialist</li>
+                            <li>Cloud Computing Certification</li>
+                            <!-- Add more certifications as needed -->
+                        </ul>
+                    </div>
                 </div>
             </div>
 
-            
-            <div class="rounded-xl overflow-hidden col-span-2">
-                <div class="bg-gray-800 rounded mb-4 p-20 w-full" style="height: 80vh; display: flex; align-items: center; justify-content: center;">
-                    <canvas id="skillChart" width="400" height="300"></canvas>
-                </div>
-            </div>
-
-            <div class="bg-gray-800 rounded-xl p-6 flex flex-col  col-span-3" style="height: 500px">
+            <div class="bg-gray-800 rounded-xl p-6 flex flex-col sticky top-8 col-span-3 h-96">
                 <div class="flex-1 overflow-y-auto space-y-4 mb-4" id="messages">
                     <div class="flex justify-start">
                         <div class="max-w-[80%] rounded-lg px-4 py-2 bg-gray-700 text-white">
@@ -65,7 +79,7 @@
                     />
                     <button
                         type="submit"
-                        class="px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition-colors"
+                        class="px-6 py-2 bg-gradient-to-r from-blue-500 to-blue-700 hover:bg-blue-700 rounded-lg font-medium transition-colors"
                     >
                         Send
                     </button>
@@ -125,7 +139,7 @@
                 </div>
                 <div class="flex justify-start">
                     <div class="max-w-[80%] rounded-lg px-4 py-2 bg-gray-700 text-white">
-                        This is a demo response. In a real application, this would be connected to an AI backend.
+                        YOU NEED AI!!
                     </div>
                 </div>
             `;
@@ -137,7 +151,7 @@
         const skillChart = new Chart(document.getElementById('skillChart'), {
             type: 'radar',
             data: {
-                labels: ['JavaScript', 'Python', 'React', 'Node.js', 'SQL'],
+                labels: ['Communication', 'Teamwork', 'Problem-Solving', 'Adaptability', 'Leadership'],
                 datasets: [{
                     label: 'Skill Levels',
                     data: [85, 90, 75, 80, 70], // Example skill levels
