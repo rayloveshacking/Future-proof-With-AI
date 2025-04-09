@@ -30,26 +30,38 @@
     <div class="p-8">
         <div class="grid grid-cols-1 lg:grid-cols-7 lg:gap-8 h-auto">
             <div class="col-span-4 grid grid-cols-2 gap-8">
+                
+                <div class="col-span-2">
+                    <h1 class="text-5xl font-bold py-4 text-center">AI Security Analyst</h1>
+                </div>
                 <div class="rounded-xl overflow-hidden lg:col-span-1 col-span-2">
-                    <div class="bg-gradient-to-r from-gray-700 to-gray-800 rounded mb-2" style="height: 80vh; position: relative; width: 100%;" id="graphContainer">
-                        <div class="node bg-green-500 bg-opacity-50 text-white cursor-pointer" id="node1" style="left: 20%; top: 50px;">Skills Matched!</div>
-                        <div class="node bg-blue-500 bg-opacity-50 text-white cursor-pointer" id="node2" style="left: 60%; top: 100px;">Writing Reports</div>
-                        <div class="node bg-blue-500 bg-opacity-50 text-white cursor-pointer" id="node3" style="left: 20%; top: 250px;">Reading Logs</div>
-                        <div class="node bg-blue-500 bg-opacity-50 text-white cursor-pointer" id="node4" style="left: 60%; top: 300px">Configure Devices</div>
+                    <div class="bg-gradient-to-r from-gray-700 to-gray-800 rounded mb-2 p-10" style="height: 80vh; position: relative; width: 100%;">
+                        
+                        <h2 class="text-lg font-bold mb-8">Roadmap</h2>
 
-                        <svg style="position: absolute; width: 100%; height: 100%;" id="graphSvg">
-                        </svg>
+                        <div style="height: 80vh; position: relative; width: 100%;" id="graphContainer">
+                            <div class="node bg-gradient-to-r from-green-500 to-green-700 bg-opacity-50 text-white cursor-pointer" id="node1" style="left: 10%; top: 20px;">AI Equiped!</div>
+                            <div class="node bg-gradient-to-r from-blue-500 to-blue-700 bg-opacity-50 text-white cursor-pointer" id="node2" style="left: 50%; top: 70px;">Writing Reports</div>
+                            <div class="node bg-gradient-to-r from-blue-500 to-blue-700 bg-opacity-50 text-white cursor-pointer" id="node3" style="left: 10%; top: 200px;">Reading Logs</div>
+                            <div class="node bg-gradient-to-r from-blue-500 to-blue-700 bg-opacity-50 text-white cursor-pointer" id="node4" style="left: 50%; top: 250px">Configure Devices</div>
+    
+                            <svg style="position: absolute; width: 100%; height: 100%;" id="graphSvg">
+                            </svg>
+                        </div>
                     </div>
                 </div>
                 <div class="rounded-xl overflow-hidden lg:col-span-1 col-span-2">
-                    <div class="bg-gradient-to-r from-gray-700 to-gray-800 rounded mb-2 p-10 w-full" style="height: 80vh; display: flex; align-items: center; justify-content: center;">
-                        <canvas id="skillChart" width="800" height="500"></canvas>
+                    <div class="bg-gradient-to-r from-gray-700 to-gray-800 rounded mb-2 p-10 w-full" style="height: 80vh;">
+                        <h2 class="text-lg font-bold mb-8">Skills</h2>
+                        <div style="display: flex; align-items: center; justify-content: center;">
+                            <canvas id="skillChart" width="800" height="500"></canvas>
+                        </div>
                     </div>
                 </div>
                 
                 <div class="rounded-xl overflow-hidden col-span-2">
-                    <div class="bg-gradient-to-r from-gray-700 to-gray-800 rounded-xl p-6 mb-8">
-                        <h2 class="text-lg font-bold mb-4">Certifications</h2>
+                    <div class="bg-gradient-to-r from-gray-700 to-gray-800 rounded-xl p-6 mb-4">
+                        <h2 class="text-lg font-bold mb-4">Certifications & Courses Needed</h2>
                         <ul class="list-disc pl-5 space-y-2">
                             <li>Certified AI Practitioner</li>
                             <li>Data Science Professional Certificate</li>
@@ -59,8 +71,15 @@
                         </ul>
                     </div>
                 </div>
+
+                <div class="col-span-2">
+                    <div class="flex justify-center pb-16">
+                        <a href="/" class="bg-gray-700 rounded-lg px-4 p-2 text-white hover:bg-gray-600 transition-colors">Back to Home</a>
+                    </div>
+                </div>
             </div>
 
+            
             <div class="bg-gray-800 rounded-xl p-6 flex flex-col sticky top-8 col-span-3 h-96">
                 <div class="flex-1 overflow-y-auto space-y-4 mb-4" id="messages">
                     <div class="flex justify-start">
