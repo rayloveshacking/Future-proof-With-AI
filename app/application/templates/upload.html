@@ -16,7 +16,7 @@
 
             <form action="/" method="post" class="space-y-6">
                 <div class="space-y-4">
-                    <label class="block text-sm font-medium">Upload Resume</label>
+                    <label class="block text-sm font-medium"></label>
                     <div
                         class="border-2 border-dashed rounded-lg p-8 text-center border-gray-600 hover:border-gray-500"
                         ondragenter="handleDrag(event)"
@@ -31,21 +31,35 @@
                                 <p class="text-lg">
                                     Drag & drop your resume here or
                                     <input type="file" name="file" id="resume" class="hidden"
-                                        onchange="document.getElementById('fileLabel').innerText = this.files[0].name">
-                                    <label for="file" class="text-blue-500 hover:text-blue-400 cursor-pointer"
-                                        id="fileLabel">
+                                        onchange="document.getElementById('fileLabel').innerText = 'File uploaded: ' + this.files[0].name">
+                                    <button type="button" class="text-blue-500 hover:text-blue-400 cursor-pointer"
+                                        id="selectFile" onclick="document.getElementById('resume').click()">
                                         browse files
-                                    </label>
+                                    </button>
                                 </p>
                                 <p class="text-sm text-gray-400">
                                     Supported formats: PDF, DOCX, DOC (Max 5MB)
                                 </p>
+                                <p id="fileLabel" class="text-sm text-gray-400"></p>
                             </div>
                         </div>
+
+                        <script>
+                            const fileInput = document.getElementById('resume');
+                            const fileName = document.getElementById('fileName');
+                            const fileLabel = document.getElementById('fileLabel');
+
+                            fileInput.addEventListener('change', (e) => {
+                                const file = fileInput.files[0];
+                                fileName.innerText = `File uploaded: ${file.name}`;
+                                fileLabel.classList.remove('hover:text-blue-400');
+                                fileLabel.classList.add('text-blue-700');
+                            });
+                        </script>
                     </div>
 
                     <div class="flex items-center justify-center">
-                        <span class="px-4 text-gray-400">or</span>
+                        <span class="px-4 text-gray-400">OR</span>
                     </div>
 
                     <button
@@ -90,12 +104,13 @@
                     </div>
                 </div>
 
-                <button
-                    type="submit"
-                    class="w-full py-3 px-4 bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-400 hover:to-blue-600 rounded-lg font-medium transition-colors"
+                
+                <a
+                    href="/results"
+                    class="w-full py-3 px-4 bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-400 hover:to-blue-600 rounded-lg font-medium transition-colors text-center inline-block"
                 >
                     Analyze Resume
-                </button>
+                </a>
             </form>
         </div>
     </div>
