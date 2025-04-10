@@ -9,6 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <style>
         .node {
             width: 100px; /* Adjust size as needed */
@@ -60,11 +61,16 @@
 </head>
 <body class="bg-gray-900 text-white">
     <div class="flex h-full">
-        <aside class="w-64 bg-gray-800 p-4 h-screen top-0 sticky">
-            <div class="mb-8 pr-32">
-                <h2 class="text-xl font-semibold mb-2 px-4">Menu</h2>
+        <aside class="w-64 bg-gray-800 p-4 h-screen top-0 sticky flex flex-col">
+            <div class="flex justify-between p-4">
+                <h2 class="text-xl font-semibold mb-2">
+                    <span class="pr-16">Menu</span>
+                    <!-- <button class="text-gray-400 hover:text-white transition-colors" onclick="this.parentNode.parentNode.parentNode.classList.toggle('hidden')">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button> -->
+                </h2>
             </div>
-            <nav>
+            <nav class="flex-1">
                 <a href="/" class="block py-2 px-4 rounded hover:bg-gray-700">Upload</a>
                 <a href="/results" class="block py-2 px-4 rounded hover:bg-gray-700">Results</a>
                 <a href="/talent" class="block py-2 px-4 rounded hover:bg-gray-700">Talent</a>
@@ -73,6 +79,10 @@
             <!-- <a href="https://cdn.discordapp.com/attachments/1237600769230766111/1359728649787670599/IMG-20250410-WA0001.jpg?ex=67f8897c&is=67f737fc&hm=910477ec66e6dfdd59cb90c4471ed6b85726597a9912c8840ede081efbcf6d22&">
                 <img class="h-12 w-auto mb-4" src="https://media.discordapp.net/attachments/1237600769230766111/1359755068726837248/IMG-20250410-WA0004.jpg?ex=67f8a217&is=67f75097&hm=52a0b8b2e686506bf7e34ff6d7a041d90aa5580b63aa4ca11ed0e9b3012bc0f7&=&format=webp&width=816&height=450" alt="Logo">
             </a> -->
+            <div class="mt-auto py-12">
+                <h2 class="text-xl font-semibold mb-2 px-4">AI Completed</h2>
+                <canvas id="aiCompletedChart" width="200" height="150"></canvas>
+            </div>
         </aside>
     <div class="p-8">
         <div class="grid grid-cols-1 lg:grid-cols-7 lg:gap-8 h-auto">
@@ -131,7 +141,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="rounded-xl overflow-hidden lg:col-span-1 col-span-2">
+                <div class="rounded-xl lg:col-span-1 col-span-2">
                      <!-- Skills Section -->
                     <div class="bg-gradient-to-r from-gray-700 to-gray-800 rounded mb-2 p-10 w-full" style="height: 80vh;">
                         <h2 class="text-lg font-bold mb-8">Current Skills</h2>
@@ -435,6 +445,54 @@
                  chatInput.focus(); // Set focus back to input
             }
         });
+        // Chart.js implementation
+        const ctx = document.getElementById('aiCompletedChart').getContext('2d');
+const completedPercentage = 70; // Example data: 70% completed
+
+const myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Completed', 'Pending'],
+        datasets: [{
+            label: 'AI Completed',
+            data: [completedPercentage, 100 - completedPercentage],
+            backgroundColor: [
+                'rgba(54, 162, 235, 0.8)',
+                'rgba(255, 99, 132, 0.8)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: false,
+        maintainAspectRatio: false,
+        legend: {
+            display: false
+        },
+        plugins: {
+            tooltip: {
+                enabled: false // Disable tooltips
+            },
+            datalabels: {
+                formatter: (value, context) => {
+                    if (context.dataIndex === 0) {
+                        return completedPercentage + '%';
+                    } else {
+                        return ''; // Don't show label for pending slice
+                    }
+                },
+                color: '#fff',
+                font: {
+                    size: 20,
+                    weight: 'bold'
+                },
+                anchor: 'center', // Position the label in the center
+                align: 'center'
+            }
+        }
+    },
+    plugins: [ChartDataLabels] // Add the plugin
+});
 
     </script>
     </div>
