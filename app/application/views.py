@@ -244,3 +244,8 @@ def chat_with_gemini(request):
     else:
         # Handle non-POST requests (e.g., GET) if necessary, or return error
         return JsonResponse({'error': 'Only POST requests are allowed for chat'}, status=405)
+
+
+def talent(request):
+    template = loader.get_template('talent.html')
+    return HttpResponse(template.render({}, request))
