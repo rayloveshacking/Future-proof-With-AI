@@ -17,10 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from application.views import upload, results
+# Import the new chat view
+from application.views import upload, results, chat_with_gemini
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('results/', results, name='results'),
-    path('', upload),
+    path('chat/', chat_with_gemini, name='chat_with_gemini'), # Add URL pattern for chat
+    path('', upload, name='upload'), # Added name='upload' for potential redirects
 ]

@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Results</title>
+    <!-- Use dynamic title -->
+    <title>Results for {{ role_title|default:"Resume Analysis" }}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         .node {
-            width: 100px;
+            width: 100px; /* Adjust size as needed */
             height: 100px;
             border-radius: 50%;
             display: flex;
@@ -19,86 +20,145 @@
             text-align: center;
             position: absolute;
             cursor: pointer;
+            padding: 5px; /* Add padding for text */
+            font-size: 0.8rem; /* Adjust font size */
+            overflow-wrap: break-word; /* Wrap long text */
+            word-wrap: break-word;
+            hyphens: auto;
+            /* Ensure nodes are above default content */
+            z-index: 1;
         }
+        /* Styles for SVG lines */
         .edge {
-            stroke: gray;
+            stroke: #9ca3af; /* Gray-400 */
             stroke-width: 2;
+            /* Add marker for arrowhead */
+            marker-end: url(#arrowhead);
         }
+        #graphSvg {
+             position: absolute;
+             top: 0;
+             left: 0;
+             width: 100%;
+             height: 100%;
+             /* Ensure SVG is behind nodes but visible */
+             z-index: 0;
+             pointer-events: none; /* Prevent SVG from blocking node clicks */
+        }
+        #graphContainer {
+            position: relative; /* Needed for absolute positioning of nodes and SVG */
+            min-height: 400px; /* Ensure container has height */
+            width: 100%; /* Ensure container takes width */
+        }
+        /* Style for chat messages */
+        .user-message { background-color: #2563eb; /* Blue */ }
+        .ai-message { background-color: #4b5563; /* Gray */ }
+        .error-message { background-color: #dc2626; /* Red */ }
     </style>
 </head>
 <body class="bg-gray-900 text-white">
     <div class="p-8">
         <div class="grid grid-cols-1 lg:grid-cols-7 lg:gap-8 h-auto">
             <div class="col-span-4 grid grid-cols-2 gap-8">
-                
+
                 <div class="col-span-2">
-                    <h1 class="text-5xl font-bold py-4 text-center">AI Security Analyst</h1>
+                    <!-- Dynamic Title -->
+                    <h1 class="text-5xl font-bold py-4 text-center">{{ role_title|default:"Analysis Results" }}</h1>
                 </div>
                 <div class="rounded-xl overflow-hidden lg:col-span-1 col-span-2">
+                    <!-- Roadmap Section -->
                     <div class="bg-gradient-to-r from-gray-700 to-gray-800 rounded mb-2 p-10" style="height: 80vh; position: relative; width: 100%;">
-                        
-                        <h2 class="text-lg font-bold mb-8">Roadmap</h2>
-
-                        <div style="height: 80vh; position: relative; width: 100%;" id="graphContainer">
-                            <div class="node bg-gradient-to-r from-green-500 to-green-700 bg-opacity-50 text-white cursor-pointer" id="node1" style="left: 10%; top: 20px;">AI Equiped!</div>
-                            <div class="node bg-gradient-to-r from-blue-500 to-blue-700 bg-opacity-50 text-white cursor-pointer" id="node2" style="left: 50%; top: 70px;">Writing Reports</div>
-                            <div class="node bg-gradient-to-r from-blue-500 to-blue-700 bg-opacity-50 text-white cursor-pointer" id="node3" style="left: 10%; top: 200px;">Reading Logs</div>
-                            <div class="node bg-gradient-to-r from-blue-500 to-blue-700 bg-opacity-50 text-white cursor-pointer" id="node4" style="left: 50%; top: 250px">Configure Devices</div>
-    
-                            <svg style="position: absolute; width: 100%; height: 100%;" id="graphSvg">
+                        <h2 class="text-lg font-bold mb-8">Suggested Roadmap</h2>
+                        <div id="graphContainer">
+                            <!-- Static Nodes - Zig-Zag Layout -->
+                            <!-- Adjust percentages for desired spacing -->
+                            <div class="node bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl text-center p-2 text-sm font-semibold" style="top: 10%; left: 20%;">
+                                <div class="icon text-2xl mb-1">🚀</div> AI Fundamentals
+                            </div>
+                            <div class="node bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl text-center p-2 text-sm font-semibold" style="top: 30%; left: 60%;">
+                                <div class="icon text-2xl mb-1">💡</div> Prompt Engineering
+                            </div>
+                             <div class="node bg-gradient-to-r from-green-500 to-emerald-500 text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl text-center p-2 text-sm font-semibold" style="top: 50%; left: 20%;">
+                                <div class="icon text-2xl mb-1">🎯</div> AI Tool Integration
+                            </div>
+                            <div class="node bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl text-center p-2 text-sm font-semibold" style="top: 70%; left: 60%;">
+                                <div class="icon text-2xl mb-1">📈</div> AI Ethics & Safety
+                            </div>
+                             <div class="node bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl text-center p-2 text-sm font-semibold" style="top: 90%; left: 20%;">
+                                <div class="icon text-2xl mb-1">🤖</div> Build AI Portfolio
+                            </div>
+                            <!-- Add more nodes if needed, adjusting positioning -->
+                            <!-- Re-add SVG container for lines -->
+                            <svg id="graphSvg">
+                                <!-- Arrowhead definition -->
+                                <defs>
+                                    <marker id="arrowhead" markerWidth="10" markerHeight="7"
+                                    refX="0" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#9ca3af" />
+                                    </marker>
+                                </defs>
                             </svg>
                         </div>
                     </div>
                 </div>
                 <div class="rounded-xl overflow-hidden lg:col-span-1 col-span-2">
+                     <!-- Skills Section -->
                     <div class="bg-gradient-to-r from-gray-700 to-gray-800 rounded mb-2 p-10 w-full" style="height: 80vh;">
-                        <h2 class="text-lg font-bold mb-8">Skills</h2>
-                        <div style="display: flex; align-items: center; justify-content: center;">
-                            <canvas id="skillChart" width="800" height="500"></canvas>
+                        <h2 class="text-lg font-bold mb-8">Skills Analysis (from Resume)</h2>
+                        <div style="display: flex; align-items: center; justify-content: center; height: calc(100% - 4rem);">
+                            <canvas id="skillChart"></canvas> <!-- Removed fixed size -->
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="rounded-xl overflow-hidden col-span-2">
+                     <!-- Certifications Section -->
                     <div class="bg-gradient-to-r from-gray-700 to-gray-800 rounded-xl p-6 mb-4">
-                        <h2 class="text-lg font-bold mb-4">Certifications & Courses Needed</h2>
+                        <h2 class="text-lg font-bold mb-4">Suggested Certifications & Courses</h2>
                         <ul class="list-disc pl-5 space-y-2">
-                            <li>Certified AI Practitioner</li>
-                            <li>Data Science Professional Certificate</li>
-                            <li>Machine Learning Specialist</li>
-                            <li>Cloud Computing Certification</li>
-                            <!-- Add more certifications as needed -->
+                            {% for cert in certifications %}
+                                <li>{{ cert }}</li>
+                            {% empty %}
+                                <li>No specific certifications suggested based on the analysis.</li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
 
                 <div class="col-span-2">
                     <div class="flex justify-center pb-16">
-                        <a href="/" class="bg-gray-700 rounded-lg px-4 p-2 text-white hover:bg-gray-600 transition-colors">Back to Home</a>
+                        <!-- Link back to upload page -->
+                        <a href="{% url 'upload' %}" class="bg-gray-700 rounded-lg px-4 p-2 text-white hover:bg-gray-600 transition-colors">Upload New Resume</a>
                     </div>
                 </div>
             </div>
 
-            
-            <div class="bg-gray-800 rounded-xl p-6 flex flex-col sticky top-8 col-span-3 h-96">
-                <div class="flex-1 overflow-y-auto space-y-4 mb-4" id="messages">
+
+            <!-- Chat Section -->
+            <div class="bg-gray-800 rounded-xl p-6 flex flex-col sticky top-8 col-span-3" style="height: calc(100vh - 4rem);"> <!-- Adjusted height -->
+                <h2 class="text-lg font-bold mb-4 text-center">Chat About Your Resume</h2>
+                <div class="flex-1 overflow-y-auto space-y-4 mb-4 border border-gray-700 rounded p-2" id="messages">
+                    <!-- Initial AI message -->
                     <div class="flex justify-start">
-                        <div class="max-w-[80%] rounded-lg px-4 py-2 bg-gray-700 text-white">
-                            Hello! I've analyzed your resume. What would you like to know?
+                        <div class="max-w-[80%] rounded-lg px-4 py-2 ai-message">
+                            Hello! I've analyzed your resume based on the text provided. Ask me anything about it!
                         </div>
                     </div>
+                    <!-- Chat messages will be added here by JavaScript -->
                 </div>
 
                 <form id="chatForm" class="flex space-x-2">
                     <input
                         type="text"
                         id="chatInput"
-                        class="flex-1 px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="Ask about your resume analysis..."
+                        class="flex-1 px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
+                        placeholder="Ask about your analysis..."
+                        autocomplete="off"
                     />
                     <button
                         type="submit"
-                        class="px-6 py-2 bg-gradient-to-r from-blue-500 to-blue-700 hover:bg-blue-700 rounded-lg font-medium transition-colors"
+                        id="sendButton"
+                        class="px-6 py-2 bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 rounded-lg font-medium transition-colors"
                     >
                         Send
                     </button>
@@ -108,89 +168,244 @@
     </div>
 
     <script>
-        function drawLine(svg, x1, y1, x2, y2) {
-            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-            line.setAttribute('class', 'edge');
-            line.setAttribute('x1', x1);
-            line.setAttribute('y1', y1);
-            line.setAttribute('x2', x2);
-            line.setAttribute('y2', y2);
-            svg.appendChild(line);
-        }
+        // --- Static Content Rendering ---
 
-        function connectNodes() {
-            const svg = document.getElementById('graphSvg');
+        // 1. Draw Lines Between Static Roadmap Nodes
+        const graphContainer = document.getElementById('graphContainer');
+        const svg = document.getElementById('graphSvg');
+        // Get all elements with the 'node' class *within* the graphContainer
+        const nodeElements = Array.from(graphContainer.querySelectorAll('.node'));
+
+        function drawLines() {
             svg.innerHTML = ''; // Clear previous lines
+             // Re-add arrowhead definition as innerHTML clearing removes it
+            const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+            defs.innerHTML = `
+                <marker id="arrowhead" markerWidth="10" markerHeight="7"
+                refX="8" refY="3.5" orient="auto" markerUnits="strokeWidth">
+                <polygon points="0 0, 10 3.5, 0 7" fill="#9ca3af" />
+                </marker>
+            `;
+            svg.appendChild(defs);
 
-            const node1 = document.getElementById('node1');
-            const node2 = document.getElementById('node2');
-            const node3 = document.getElementById('node3');
-            const node4 = document.getElementById('node4');
+            if (nodeElements.length < 2) return;
 
-            const rect1 = node1.getBoundingClientRect();
-            const rect2 = node2.getBoundingClientRect();
-            const rect3 = node3.getBoundingClientRect();
-            const rect4 = node4.getBoundingClientRect();
-            const container = document.getElementById('graphContainer').getBoundingClientRect();
+            const containerRect = graphContainer.getBoundingClientRect();
 
-            drawLine(svg, rect1.left + rect1.width / 2 - container.left, rect1.top + rect1.height / 2 - container.top, rect2.left + rect2.width / 2 - container.left, rect2.top + rect2.height / 2 - container.top);
-            drawLine(svg, rect2.left + rect2.width / 2 - container.left, rect2.top + rect2.height / 2 - container.top, rect3.left + rect3.width / 2 - container.left, rect3.top + rect3.height / 2 - container.top);
-            drawLine(svg, rect3.left + rect3.width / 2 - container.left, rect3.top + rect3.height / 2 - container.top, rect4.left + rect4.width / 2 - container.left, rect4.top + rect4.height / 2 - container.top);
+            // Define the connection order (adjust if needed)
+            // Example: 0 -> 1 -> 2 -> 3 -> 4 (sequence)
+            const connections = [
+                 [0, 1], [1, 2], [2, 3], [3, 4] // Sequence: Connect nodes 0->1, 1->2, 2->3, 3->4
+            ];
+
+
+            connections.forEach(pair => {
+                const node1 = nodeElements[pair[0]];
+                const node2 = nodeElements[pair[1]];
+
+                if (!node1 || !node2) {
+                    console.warn(`Skipping connection for pair ${pair}: Node not found.`);
+                    return; // Skip if a node in the pair doesn't exist
+                }
+
+                const rect1 = node1.getBoundingClientRect();
+                const rect2 = node2.getBoundingClientRect();
+
+                // Calculate center coordinates relative to the SVG container
+                const x1 = rect1.left + rect1.width / 2 - containerRect.left;
+                const y1 = rect1.top + rect1.height / 2 - containerRect.top;
+                const x2 = rect2.left + rect2.width / 2 - containerRect.left;
+                const y2 = rect2.top + rect2.height / 2 - containerRect.top;
+
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('class', 'edge');
+                line.setAttribute('x1', x1);
+                line.setAttribute('y1', y1);
+                line.setAttribute('x2', x2);
+                line.setAttribute('y2', y2);
+                svg.appendChild(line);
+            });
         }
 
-        connectNodes();
-        window.addEventListener('resize', connectNodes); // Redraw on resize
-
-        const chatForm = document.getElementById('chatForm');
-        const chatInput = document.getElementById('chatInput');
-        const messagesDiv = document.getElementById('messages');
-
-        chatForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const message = chatInput.value.trim();
-            if (!message) return;
-
-            messagesDiv.innerHTML += `
-                <div class="flex justify-end">
-                    <div class="max-w-[80%] rounded-lg px-4 py-2 bg-blue-600 text-white">
-                        ${message}
-                    </div>
-                </div>
-                <div class="flex justify-start">
-                    <div class="max-w-[80%] rounded-lg px-4 py-2 bg-gray-700 text-white">
-                        YOU NEED AI!!
-                    </div>
-                </div>
-            `;
-            chatInput.value = '';
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+         // Initial drawing after layout is stable
+        // Use setTimeout or DOMContentLoaded
+        window.addEventListener('DOMContentLoaded', () => {
+             // Ensure styles are applied and layout calculated
+             setTimeout(drawLines, 100); // Small delay might be needed
         });
 
-        // Skill Chart
-        const skillChart = new Chart(document.getElementById('skillChart'), {
+
+        // Redraw on resize
+        window.addEventListener('resize', () => {
+             setTimeout(drawLines, 100); // Debounce resize slightly
+        });
+
+
+        // 2. Skills Chart - Using Static Data
+        // Static AI-focused skills data
+        const staticSkillsData = {
+            'AI Literacy': 70,
+            'Data Analysis': 65,
+            'Machine Learning Basics': 55,
+            'Critical Thinking': 80,
+            'Adaptability': 75,
+            'AI Communication': 60
+        };
+        const skillLabels = Object.keys(staticSkillsData);
+        const skillValues = Object.values(staticSkillsData);
+
+        const skillChartCtx = document.getElementById('skillChart').getContext('2d');
+        const skillChart = new Chart(skillChartCtx, {
             type: 'radar',
             data: {
-                labels: ['Communication', 'Teamwork', 'Problem-Solving', 'Adaptability', 'Leadership'],
+                labels: skillLabels,
                 datasets: [{
-                    label: 'Skill Levels',
-                    data: [85, 90, 75, 80, 70], // Example skill levels
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
+                    label: 'AI-Enhanced Skill Profile', // Updated label
+                    data: skillValues,
+                    backgroundColor: 'rgba(79, 70, 229, 0.3)', // Indigo semi-transparent
+                    borderColor: 'rgba(79, 70, 229, 1)', // Solid Indigo
+                    borderWidth: 2,
+                    pointBackgroundColor: 'rgba(79, 70, 229, 1)', // Indigo points
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(79, 70, 229, 1)' // Indigo hover
                 }]
             },
             options: {
+                responsive: true, // Make chart responsive
+                maintainAspectRatio: false, // Allow chart to fill container height
                 scales: {
                     r: {
                         beginAtZero: true,
                         max: 100,
                         ticks: {
-                            stepSize: 20
+                            stepSize: 20,
+                            backdropColor: 'rgba(0, 0, 0, 0)', // Transparent background for ticks
+                            color: '#cbd5e1' // Light gray text for scale
+                        },
+                        pointLabels: {
+                            color: '#e5e7eb', // Lighter gray for labels
+                            font: { size: 12 }
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.2)' // Lighter grid lines
+                        },
+                        angleLines: {
+                            color: 'rgba(255, 255, 255, 0.2)' // Lighter angle lines
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#e5e7eb' // Lighter gray for legend
                         }
                     }
                 }
             }
         });
+
+
+        // --- Chat Functionality ---
+        const chatForm = document.getElementById('chatForm');
+        const chatInput = document.getElementById('chatInput');
+        const messagesDiv = document.getElementById('messages');
+        const sendButton = document.getElementById('sendButton');
+        const chatUrl = "{% url 'chat_with_gemini' %}"; // Get URL from Django template tag
+
+        // Function to add a message to the chat display
+        function addChatMessage(message, type = 'ai') { // type can be 'user', 'ai', 'error'
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('flex');
+
+            const bubbleDiv = document.createElement('div');
+            bubbleDiv.classList.add('max-w-[80%]', 'rounded-lg', 'px-4', 'py-2', 'text-white');
+
+            if (type === 'user') {
+                messageDiv.classList.add('justify-end');
+                bubbleDiv.classList.add('user-message');
+            } else if (type === 'error') {
+                 messageDiv.classList.add('justify-start');
+                 bubbleDiv.classList.add('error-message');
+            }
+            else { // AI message
+                messageDiv.classList.add('justify-start');
+                bubbleDiv.classList.add('ai-message');
+            }
+
+            bubbleDiv.textContent = message; // Use textContent for security
+            messageDiv.appendChild(bubbleDiv);
+            messagesDiv.appendChild(messageDiv);
+
+            // Scroll to the bottom
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        chatForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const userMessage = chatInput.value.trim();
+            if (!userMessage) return;
+
+            // Display user message immediately
+            addChatMessage(userMessage, 'user');
+            chatInput.value = ''; // Clear input
+            sendButton.disabled = true; // Disable button while waiting
+            addChatMessage('Thinking...', 'ai'); // Add thinking indicator
+
+            try {
+                const response = await fetch(chatUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    body: JSON.stringify({ message: userMessage })
+                });
+
+                // Remove "Thinking..." message
+                const thinkingMessage = messagesDiv.lastElementChild;
+                 if (thinkingMessage && thinkingMessage.textContent.includes('Thinking...')) {
+                     messagesDiv.removeChild(thinkingMessage);
+                 }
+
+
+                if (!response.ok) {
+                    // Handle HTTP errors (like 404, 500)
+                    let errorMsg = `Error: ${response.status} ${response.statusText}`;
+                    try { // Try to get more specific error from JSON response
+                        const errorData = await response.json();
+                        errorMsg = errorData.error || errorData.reply || errorMsg;
+                    } catch (jsonError) { /* Ignore if response isn't JSON */ }
+                    addChatMessage(errorMsg, 'error');
+                    console.error('Chat request failed:', response.status, response.statusText);
+
+                } else {
+                    const data = await response.json();
+                    if (data.reply) {
+                        addChatMessage(data.reply, 'ai');
+                    } else if (data.error) {
+                         addChatMessage(`Error: ${data.error}`, 'error');
+                         console.error('Chat API Error:', data.error);
+                    } else {
+                        addChatMessage("Received an empty response from the server.", 'error');
+                    }
+                }
+
+            } catch (error) {
+                 // Remove "Thinking..." message in case of network error
+                const thinkingMessage = messagesDiv.lastElementChild;
+                 if (thinkingMessage && thinkingMessage.textContent.includes('Thinking...')) {
+                     messagesDiv.removeChild(thinkingMessage);
+                 }
+                // Handle network errors or other fetch issues
+                addChatMessage(`Network or other error: ${error.message}`, 'error');
+                console.error('Chat fetch error:', error);
+            } finally {
+                 sendButton.disabled = false; // Re-enable button
+                 chatInput.focus(); // Set focus back to input
+            }
+        });
+
     </script>
 </body>
 </html>

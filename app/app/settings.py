@@ -15,6 +15,8 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Gemini API Key (Move to environment variables for production!)
+GEMINI_API_KEY = 'AIzaSyDqpf5Dgh8jTQLm8SB6f0Sig_0soikpNxo'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
