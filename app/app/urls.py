@@ -17,10 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from application.views import upload, results
+from application.views import upload, results, talent
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('results/', results, name='results'),
+    path('talent/', talent, name='talent'),
     path('', upload),
 ]

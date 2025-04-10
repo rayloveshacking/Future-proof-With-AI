@@ -24,3 +24,8 @@ def upload(request):
     else:
         template = loader.get_template('upload.html')
         return HttpResponse(template.render({}, request)) # correct render.
+
+def talent(request):
+    template = loader.get_template('talent.html')
+    return HttpResponse(template.render({}, request))
+
