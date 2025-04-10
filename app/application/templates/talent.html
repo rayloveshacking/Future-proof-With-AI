@@ -22,11 +22,11 @@
 </head>
 <body class="bg-gray-900 text-white">
     <div class="flex h-full">
-        <aside class="w-64 bg-gray-800 p-4 h-screen top-0 sticky">
+        <aside class="w-64 bg-gray-800 p-4 h-screen top-0 sticky flex flex-col">
             <div class="mb-6">
                 <h2 class="text-xl font-semibold mb-2 px-4">Menu</h2>
             </div>
-            <nav>
+            <nav class="flex-1">
                 <a href="/" class="block py-2 px-4 rounded flex items-center hover:bg-gray-700">
                     <svg class="mr-4" width="24px" height="16px" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
                         <path d="M17 17H17.01M15.6 14H18C18.9319 14 19.3978 14 19.7654 14.1522C20.2554 14.3552 20.6448 14.7446 20.8478 15.2346C21 15.6022 21 16.0681 21 17C21 17.9319 21 18.3978 20.8478 18.7654C20.6448 19.2554 20.2554 19.6448 19.7654 19.8478C19.3978 20 18.9319 20 18 20H6C5.06812 20 4.60218 20 4.23463 19.8478C3.74458 19.6448 3.35523 19.2554 3.15224 18.7654C3 18.3978 3 17.9319 3 17C3 16.0681 3 15.6022 3.15224 15.2346C3.35523 14.7446 3.74458 14.3552 4.23463 14.1522C4.60218 14 5.06812 14 6 14H8.4M12 15V4M12 4L15 7M12 4L9 7" stroke="white" stroke-width="2"/>
@@ -46,6 +46,10 @@
                     Talent
                 </a>
             </nav>
+            <div class="mt-auto py-12">
+                <!-- <h2 class="text-xl font-semibold mb-2 px-4">Powered by</h2> -->
+                <img class="px-4" src="https://media.discordapp.net/attachments/1237600769230766111/1359755068726837248/IMG-20250410-WA0004.jpg?ex=67f8a217&is=67f75097&hm=52a0b8b2e686506bf7e34ff6d7a041d90aa5580b63aa4ca11ed0e9b3012bc0f7&=&format=webp&width=816&height=450" alt="Logo" class="h-12 w-auto mb-4">
+            </div>
         </aside>
         <div class="grid grid-cols-1 lg:grid-cols-5 lg:gap-8 max-w-6xl mx-auto p-8">
             <div class="lg:col-span-3 bg-gray-800 rounded-xl p-6">
@@ -144,6 +148,7 @@
                             <h3 class="font-semibold">John Doe</h3>
                             <p>Software Engineer | Singapore | 5 years experience</p>
                             <p>Skills: Python, JavaScript, React</p>
+                            <p>Last uploaded 6 minutes ago</p>
                         </div>
                     </div>
                     <div class="result-item">
@@ -152,6 +157,7 @@
                             <h3 class="font-semibold">Jane Smith</h3>
                             <p>Data Scientist | United States | 3 years experience</p>
                             <p>Skills: Python, R, Machine Learning</p>
+                            <p>Last uploaded 6 minutes ago</p>
                         </div>
                     </div>
                     <div class="result-item">
@@ -160,6 +166,7 @@
                             <h3 class="font-semibold">Alice Johnson</h3>
                             <p>Web Developer | Canada | 7 years experience</p>
                             <p>Skills: JavaScript, HTML, CSS</p>
+                            <p>Last uploaded 6 minutes ago</p>
                         </div>
                     </div>
                     <div class="result-item">
@@ -168,6 +175,7 @@
                             <h3 class="font-semibold">Bob Williams</h3>
                             <p>AI Engineer | Singapore | 2 years experience</p>
                             <p>Skills: Python, Tensorflow, Keras</p>
+                            <p>Last uploaded 6 minutes ago</p>
                         </div>
                     </div>
                     <div class="result-item">
@@ -176,6 +184,7 @@
                             <h3 class="font-semibold">Eva Brown</h3>
                             <p>Data Analyst | United States | 4 years experience</p>
                             <p>Skills: SQL, Tableau, Excel</p>
+                            <p>Last uploaded 6 minutes ago</p>
                         </div>
                     </div>
                     <div class="result-item">
@@ -184,6 +193,7 @@
                             <h3 class="font-semibold">Chris Davis</h3>
                             <p>Cloud Engineer | Canada | 6 years experience</p>
                             <p>Skills: AWS, Azure, Docker</p>
+                            <p>Last uploaded 6 minutes ago</p>
                         </div>
                     </div>
                     <div class="result-item">
@@ -192,6 +202,7 @@
                             <h3 class="font-semibold">Alice Johnson</h3>
                             <p>Web Developer | Canada | 7 years experience</p>
                             <p>Skills: JavaScript, HTML, CSS</p>
+                            <p>Last uploaded 6 minutes ago</p>
                         </div>
                     </div>
                     <div class="result-item">
@@ -200,6 +211,7 @@
                             <h3 class="font-semibold">Bob Williams</h3>
                             <p>AI Engineer | Singapore | 2 years experience</p>
                             <p>Skills: Python, Tensorflow, Keras</p>
+                            <p>Last uploaded 6 minutes ago</p>
                         </div>
                     </div>
                     <div class="result-item">
@@ -208,6 +220,7 @@
                             <h3 class="font-semibold">Eva Brown</h3>
                             <p>Data Analyst | United States | 4 years experience</p>
                             <p>Skills: SQL, Tableau, Excel</p>
+                            <p>Last uploaded 6 minutes ago</p>
                         </div>
                     </div>
                     <div class="result-item">
@@ -216,6 +229,7 @@
                             <h3 class="font-semibold">Chris Davis</h3>
                             <p>Cloud Engineer | Canada | 6 years experience</p>
                             <p>Skills: AWS, Azure, Docker</p>
+                            <p>Last uploaded 6 minutes ago</p>
                         </div>
                     </div>
                     <div class="result-item">
@@ -224,6 +238,7 @@
                             <h3 class="font-semibold">Alice Johnson</h3>
                             <p>Web Developer | Canada | 7 years experience</p>
                             <p>Skills: JavaScript, HTML, CSS</p>
+                            <p>Last uploaded 6 minutes ago</p>
                         </div>
                     </div>
                     <div class="result-item">
@@ -232,6 +247,7 @@
                             <h3 class="font-semibold">Bob Williams</h3>
                             <p>AI Engineer | Singapore | 2 years experience</p>
                             <p>Skills: Python, Tensorflow, Keras</p>
+                            <p>Last uploaded 6 minutes ago</p>
                         </div>
                     </div>
                     <div class="result-item">
@@ -240,6 +256,7 @@
                             <h3 class="font-semibold">Eva Brown</h3>
                             <p>Data Analyst | United States | 4 years experience</p>
                             <p>Skills: SQL, Tableau, Excel</p>
+                            <p>Last uploaded 6 minutes ago</p>
                         </div>
                     </div>
                     <div class="result-item">
@@ -248,6 +265,7 @@
                             <h3 class="font-semibold">Chris Davis</h3>
                             <p>Cloud Engineer | Canada | 6 years experience</p>
                             <p>Skills: AWS, Azure, Docker</p>
+                            <p>Last uploaded 6 minutes ago</p>
                         </div>
                     </div>
                     <div class="result-item">
@@ -256,6 +274,7 @@
                             <h3 class="font-semibold">Alice Johnson</h3>
                             <p>Web Developer | Canada | 7 years experience</p>
                             <p>Skills: JavaScript, HTML, CSS</p>
+                            <p>Last uploaded 6 minutes ago</p>
                         </div>
                     </div>
                     <div class="result-item">
@@ -264,6 +283,7 @@
                             <h3 class="font-semibold">Bob Williams</h3>
                             <p>AI Engineer | Singapore | 2 years experience</p>
                             <p>Skills: Python, Tensorflow, Keras</p>
+                            <p>Last uploaded 6 minutes ago</p>
                         </div>
                     </div>
                     <div class="result-item">
@@ -272,6 +292,7 @@
                             <h3 class="font-semibold">Eva Brown</h3>
                             <p>Data Analyst | United States | 4 years experience</p>
                             <p>Skills: SQL, Tableau, Excel</p>
+                            <p>Last uploaded 6 minutes ago</p>
                         </div>
                     </div>
                     <div class="result-item">
@@ -280,6 +301,7 @@
                             <h3 class="font-semibold">Chris Davis</h3>
                             <p>Cloud Engineer | Canada | 6 years experience</p>
                             <p>Skills: AWS, Azure, Docker</p>
+                            <p>Last uploaded 6 minutes ago</p>
                         </div>
                     </div>
                     <div class="result-item">
@@ -288,6 +310,7 @@
                             <h3 class="font-semibold">Alice Johnson</h3>
                             <p>Web Developer | Canada | 7 years experience</p>
                             <p>Skills: JavaScript, HTML, CSS</p>
+                            <p>Last uploaded 6 minutes ago</p>
                         </div>
                     </div>
                     <div class="result-item">
@@ -296,6 +319,7 @@
                             <h3 class="font-semibold">Bob Williams</h3>
                             <p>AI Engineer | Singapore | 2 years experience</p>
                             <p>Skills: Python, Tensorflow, Keras</p>
+                            <p>Last uploaded 6 minutes ago</p>
                         </div>
                     </div>
                     <div class="result-item">
@@ -304,6 +328,7 @@
                             <h3 class="font-semibold">Eva Brown</h3>
                             <p>Data Analyst | United States | 4 years experience</p>
                             <p>Skills: SQL, Tableau, Excel</p>
+                            <p>Last uploaded 6 minutes ago</p>
                         </div>
                     </div>
                     <div class="result-item">
@@ -312,6 +337,7 @@
                             <h3 class="font-semibold">Chris Davis</h3>
                             <p>Cloud Engineer | Canada | 6 years experience</p>
                             <p>Skills: AWS, Azure, Docker</p>
+                            <p>Last uploaded 6 minutes ago</p>
                         </div>
                     </div>
                     <div class="result-item">
@@ -320,6 +346,7 @@
                             <h3 class="font-semibold">Alice Johnson</h3>
                             <p>Web Developer | Canada | 7 years experience</p>
                             <p>Skills: JavaScript, HTML, CSS</p>
+                            <p>Last uploaded 6 minutes ago</p>
                         </div>
                     </div>
                     <div class="result-item">
@@ -328,6 +355,7 @@
                             <h3 class="font-semibold">Bob Williams</h3>
                             <p>AI Engineer | Singapore | 2 years experience</p>
                             <p>Skills: Python, Tensorflow, Keras</p>
+                            <p>Last uploaded 6 minutes ago</p>
                         </div>
                     </div>
                     <div class="result-item">
@@ -336,6 +364,7 @@
                             <h3 class="font-semibold">Eva Brown</h3>
                             <p>Data Analyst | United States | 4 years experience</p>
                             <p>Skills: SQL, Tableau, Excel</p>
+                            <p>Last uploaded 6 minutes ago</p>
                         </div>
                     </div>
                     <div class="result-item">
@@ -344,6 +373,7 @@
                             <h3 class="font-semibold">Chris Davis</h3>
                             <p>Cloud Engineer | Canada | 6 years experience</p>
                             <p>Skills: AWS, Azure, Docker</p>
+                            <p>Last uploaded 6 minutes ago</p>
                         </div>
                     </div>
                     <div class="result-item">
@@ -352,6 +382,7 @@
                             <h3 class="font-semibold">Alice Johnson</h3>
                             <p>Web Developer | Canada | 7 years experience</p>
                             <p>Skills: JavaScript, HTML, CSS</p>
+                            <p>Last uploaded 6 minutes ago</p>
                         </div>
                     </div>
                     <div class="result-item">
@@ -360,6 +391,7 @@
                             <h3 class="font-semibold">Bob Williams</h3>
                             <p>AI Engineer | Singapore | 2 years experience</p>
                             <p>Skills: Python, Tensorflow, Keras</p>
+                            <p>Last uploaded 6 minutes ago</p>
                         </div>
                     </div>
                     <div class="result-item">
@@ -368,6 +400,7 @@
                             <h3 class="font-semibold">Eva Brown</h3>
                             <p>Data Analyst | United States | 4 years experience</p>
                             <p>Skills: SQL, Tableau, Excel</p>
+                            <p>Last uploaded 6 minutes ago</p>
                         </div>
                     </div>
                     <div class="result-item">
@@ -376,6 +409,7 @@
                             <h3 class="font-semibold">Chris Davis</h3>
                             <p>Cloud Engineer | Canada | 6 years experience</p>
                             <p>Skills: AWS, Azure, Docker</p>
+                            <p>Last uploaded 6 minutes ago</p>
                         </div>
                     </div>
                 </div>
@@ -383,6 +417,23 @@
         </div>
     </div>
     <script>
+    document.getElementById('searchTalentButton').addEventListener('click', () => {
+        const skillElements = Array.from(document.querySelectorAll('#skillList span'));
+        const searchSkills = skillElements.map(el => el.textContent.replace(' x', '').trim().toLowerCase());
+
+        const resultItems = document.querySelectorAll('.result-item');
+        resultItems.forEach(item => {
+            const itemSkills = item.dataset.skills.toLowerCase().split(', ').map(s => s.trim());
+            let matches = false; // Changed to an OR condition
+            if(searchSkills.length === 0){
+                matches = true;
+            } else {
+                matches = searchSkills.some(skill => itemSkills.includes(skill));
+            }
+            item.style.display = matches ? 'flex' : 'none';
+        });
+    });
+
         document.getElementById('requestAssessmentButton').addEventListener('click', () => {
             const checkedItems = Array.from(document.querySelectorAll('.result-item input[type="checkbox"]:checked'))
                 .map(checkbox => checkbox.value);
