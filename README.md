@@ -83,10 +83,10 @@ To run this project locally:
 
 ## Team 🧑‍💻
 
-*   [Your Name/Team Member 1]
-*   [Team Member 2]
-*   ...
+*   Thar Htet Shein
+*   Jun Hao
+*   Aldric Liew
 
 ---
 
-*Built with passion during the [Hackathon Name]!*
+*Built with passion during the AiSP Hackathon!*
