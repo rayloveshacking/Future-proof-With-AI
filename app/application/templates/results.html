@@ -202,13 +202,14 @@
                     <!-- Chat messages will be added here by JavaScript -->
                 </div>
 
-                <form id="chatForm" class="flex space-x-2">
+                <form id="chatForm" class="flex space-x-2" onsubmit="event.preventDefault(); document.getElementById('sendButton').click();">
                     <input
                         type="text"
                         id="chatInput"
                         class="flex-1 px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
                         placeholder="Ask about your analysis..."
                         autocomplete="off"
+                        onkeydown="if (event.key === 'Enter') document.getElementById('sendButton').click();"
                     />
                     <button
                         type="submit"

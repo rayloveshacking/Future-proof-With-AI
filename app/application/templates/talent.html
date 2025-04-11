@@ -63,7 +63,7 @@
                 <div class="filter-section">
                     <h2 class="text-lg font-semibold mb-4">Skills</h2>
                     <div class="flex space-x-2">
-                        <input type="text" placeholder="e.g., Python, JavaScript" class="flex-1 px-4 py-2 bg-gray-600 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" id="skillInput">
+                        <input type="text" placeholder="e.g., Python, JavaScript" class="flex-1 px-4 py-2 bg-gray-600 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" id="skillInput" />
                         <button class="px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-700 hover:bg-blue-700 rounded-lg font-medium transition-colors" id="addSkillButton">Add</button>
                     </div>
                     <div class="mt-2" id="skillList">
@@ -75,7 +75,12 @@
                     const skillInput = document.getElementById('skillInput');
                     const skillList = document.getElementById('skillList');
 
-                    addSkillButton.addEventListener('click', (e) => {
+                    addSkillButton.addEventListener('click', (e) => addSkill());
+                    skillInput.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter') addSkill();
+                    });
+
+                    function addSkill() {
                         const skill = skillInput.value.trim();
                         if (!skill) return;
 
@@ -93,7 +98,7 @@
 
                         skillList.appendChild(skillElement);
                         skillInput.value = '';
-                    });
+                    }
                 </script>
 
                 <div class="filter-section">
